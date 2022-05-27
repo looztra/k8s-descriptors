@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: guestbook-ui
   annotations:
-    devops.io/yolo: casimir
+    devops.io/yolo: goosh
 spec:
   replicas: 1
   revisionHistoryLimit: 3
