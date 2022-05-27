@@ -8,7 +8,7 @@ commonAnnotations:
   cpe.decathlon.com/kustomize-assembly: podinfo/frontend/stg
 
 resources:
-  - ../../component-sets/podinfo-frontend
+  - ../../../../kustomize/component-sets/podinfo-frontend
 
 generatorOptions:
   annotations:
@@ -23,7 +23,7 @@ configMapGenerator:
       - ingress-prefix=podinfo-fe
   - name: global-config
     literals:
-      - ingress-base-url=ig1.dev-01.cfurmaniak-sbox-a2cv.decathlon.io
+      - ingress-base-url=172.18.0.2.nip.io
 
 replacements:
   - source:

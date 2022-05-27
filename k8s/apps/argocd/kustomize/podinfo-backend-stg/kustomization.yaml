@@ -8,7 +8,7 @@ commonAnnotations:
   cpe.decathlon.com/kustomize-assembly: podinfo/backend/stg
 
 resources:
-  - ../../component-sets/podinfo-backend
+  - ../../../../kustomize/component-sets/podinfo-backend
 
 generatorOptions:
   annotations:
