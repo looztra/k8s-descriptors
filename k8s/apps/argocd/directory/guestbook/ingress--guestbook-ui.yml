@@ -5,7 +5,7 @@ metadata:
   name: guestbook-ui
 spec:
   rules:
-    - host: guestbook.directory.argocd.172.18.0.2.nip.io
+    - host: guestbook.dir.argocd.172.18.0.2.nip.io
       http:
         paths:
           - path: /
