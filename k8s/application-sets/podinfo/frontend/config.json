@@ -1,0 +1,6 @@
+{
+  "project": "podinfo",
+  "name": "podinfo-frontend",
+  "type": "kuztomize",
+  "namespace": "podinfo-frontend-kz-argocd"
+}
