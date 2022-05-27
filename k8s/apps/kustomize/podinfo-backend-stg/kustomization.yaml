@@ -1,0 +1,46 @@
+---
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+namespace: podinfo-backend
+
+commonAnnotations:
+  cpe.decathlon.com/kustomize-assembly: podinfo/backend/stg
+
+resources:
+  - ../../component-sets/podinfo-backend
+
+generatorOptions:
+  annotations:
+    cpe.decathlon.com/what: holds kustomize vars values
+
+configMapGenerator:
+  - name: podinfo-backend-config
+    literals:
+      - cache-server=cache.podinfo-backend:6379
+      - ui-color=#34ebab
+
+replacements:
+  - source:
+      kind: ConfigMap
+      name: podinfo-backend-config
+      fieldpath: data.ui-color
+    targets:
+      - select:
+          name: backend
+          kind: Deployment
+        fieldpaths:
+          - spec.template.spec.containers.0.env.0.value
+  - source:
+      kind: ConfigMap
+      name: podinfo-backend-config
+      fieldpath: data.cache-server
+    targets:
+      - select:
+          name: backend
+          kind: Deployment
+        fieldpaths:
+          - spec.template.spec.containers.0.command.6
+        options:
+          delimiter: "="
+          index: 1
