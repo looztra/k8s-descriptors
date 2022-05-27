@@ -3,7 +3,6 @@ kind: Kustomization
 apiVersion: kustomize.config.k8s.io/v1beta1
 namespace: guestbook-kustomize
 commonAnnotations:
-  nodevops.io/argocd-application: guestbook-kustomize
   nodevops.io/kustomize-assembly: guestbook-kustomize
 resources:
   - ../kustomize/components/guestbook
