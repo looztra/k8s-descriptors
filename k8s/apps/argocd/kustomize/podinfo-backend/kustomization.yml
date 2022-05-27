@@ -42,3 +42,6 @@ replacements:
         options:
           delimiter: "="
           index: 1
+images:
+  - name: ghcr.io/stefanprodan/podinfo
+    newTag: 6.1.5
