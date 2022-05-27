@@ -1,0 +1,6 @@
+{
+  "project": "guestbook",
+  "name": "guestbook",
+  "type": "directory",
+  "namespace": "guestbook-dir-argocd"
+}
