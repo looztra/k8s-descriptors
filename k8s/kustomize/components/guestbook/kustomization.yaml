@@ -5,5 +5,5 @@ commonAnnotations:
   nodevops.io/kustomize-component: guestbook
 resources:
 - resources/deployment--guestbook-ui.yml
-- resources/svc-guestbook-ui.yml
-- resources/ing-guestbook-ui.yml
+- resources/svc--guestbook-ui.yml
+- resources/ingress--guestbook-ui.yml
