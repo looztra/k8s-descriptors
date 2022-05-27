@@ -5,6 +5,4 @@ namespace: guestbook-kustomize
 commonAnnotations:
   nodevops.io/kustomize-assembly: guestbook-kustomize
 resources:
-  - ../kustomize/components/guestbook
-#- resources/guestbook-ui-deployment.yaml
-#- resources/guestbook-ui-svc.yaml
+  - ../../kustomize/components/guestbook
