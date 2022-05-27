@@ -1,6 +1,6 @@
 {
   "project": "guestbook",
   "name": "guestbook",
-  "type": "kuztomize",
+  "type": "kustomize",
   "namespace": "guestbook-kz-argocd"
 }
