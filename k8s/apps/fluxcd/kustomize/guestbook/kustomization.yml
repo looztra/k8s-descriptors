@@ -5,3 +5,20 @@ commonAnnotations:
   nodevops.io/kustomize-assembly: guestbook-kustomize-argocd
 resources:
   - ../../../../kustomize/components/guestbook
+
+configMapGenerator:
+  - name: guestbook-ui-config
+    literals:
+      - ingress-url=guestbook.kz.fluxcd.172.18.0.2.nip.io
+
+replacements:
+  - source:
+      kind: ConfigMap
+      name: guestbook-ui-config
+      fieldPath: data.ingress-url
+    targets:
+      - select:
+          name: guestbook-ui
+          kind: Ingress
+        fieldpaths:
+          - spec.rules.0.host
