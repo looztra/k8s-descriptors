@@ -1,0 +1,16 @@
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+kind: Kustomization
+metadata:
+  name: flux-guestbook-dir-fluxcd
+  namespace: guestbook-dir-fluxcd
+spec:
+  interval: 5m
+  serviceAccountName: sa-flux-guestbook-dir-fluxcd
+  targetNamespace: guestbook-dir-fluxcd
+  path: "k8s/apps/fluxcd/directory/guestbook"
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+    namespace: flux-system
