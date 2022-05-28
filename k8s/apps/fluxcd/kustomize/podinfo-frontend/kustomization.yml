@@ -3,7 +3,7 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 
 commonAnnotations:
-  cpe.decathlon.com/kustomize-assembly: podinfo/frontend-argocd
+  cpe.decathlon.com/kustomize-assembly: podinfo/frontend-fluxcd
 
 resources:
   - ../../../../kustomize/component-sets/podinfo-frontend
@@ -15,10 +15,10 @@ generatorOptions:
 configMapGenerator:
   - name: podinfo-frontend-config
     literals:
-      - backend-url=http://backend.podinfo-backend-kz-argocd:9898/echo
-      - cache-server=cache.podinfo-backend-kz-argocd:6379
-      - ui-color=#34ebab
-      - ingress-prefix=podinfo-fe.kz.argocd
+      - backend-url=http://backend.podinfo-backend-kz-fluxcd:9898/echo
+      - cache-server=cache.podinfo-backend-kz-fluxcd:6379
+      - ui-color=#7734eb
+      - ingress-prefix=podinfo-fe.kz.fluxcd
   - name: global-config
     literals:
       - ingress-base-url=172.18.0.2.nip.io
