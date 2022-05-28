@@ -19,4 +19,15 @@ spec:
       create: true
       passwordHash: $2a$10$B0WvpzlymVYonwPF/8bIguthzaUHv/8Xm4BPc5ht/pVP/FFKEgNaS
       username: admin
+    ingress:
+      enabled: true
+      className: traefik
+      annotations: {}
+      # kubernetes.io/ingress.class: nginx
+      # kubernetes.io/tls-acme: "true"
+      hosts:
+        - host: ww-gitops.fluxcd.172.18.0.2.nip.io
+          paths:
+            - path: /
+              pathType: ImplementationSpecific
 
