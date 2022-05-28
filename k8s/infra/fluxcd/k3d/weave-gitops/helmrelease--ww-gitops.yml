@@ -28,5 +28,5 @@ spec:
         - host: ww-gitops.fluxcd.172.18.0.2.nip.io
           paths:
             - path: /
-              pathType: ImplementationSpecific
+              pathType: Prefix
 
