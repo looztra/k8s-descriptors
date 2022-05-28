@@ -1,0 +1,16 @@
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+kind: Kustomization
+metadata:
+  name: flux-podinfo-backend-kz-fluxcd
+  namespace: podinfo-backend-kz-fluxcd
+spec:
+  interval: 5m
+  serviceAccountName: sa-flux-podinfo-backend-kz-fluxcd
+  targetNamespace: podinfo-backend-kz-fluxcd
+  path: "k8s/apps/fluxcd/kustomize/podinfo-backend"
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+    namespace: flux-system

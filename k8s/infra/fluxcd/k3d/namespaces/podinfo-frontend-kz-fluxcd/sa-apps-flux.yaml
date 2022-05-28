@@ -1,0 +1,30 @@
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: sa-flux-podinfo-frontend-kz-fluxcd
+  namespace: podinfo-frontend-kz-fluxcd
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: role-flux-podinfo-frontend-kz-fluxcd
+  namespace: podinfo-frontend-kz-fluxcd
+rules:
+  - apiGroups: ["*"]
+    resources: ["*"]
+    verbs: ["*"]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: rolebinding-flux-podinfo-frontend-kz-fluxcd
+  namespace: podinfo-frontend-kz-fluxcd
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: Role
+  name: role-flux-podinfo-frontend-kz-fluxcd
+subjects:
+  - kind: ServiceAccount
+    name: sa-flux-podinfo-frontend-kz-fluxcd
+    namespace: podinfo-frontend-kz-fluxcd
