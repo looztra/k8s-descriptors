@@ -1,0 +1,92 @@
+---
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+commonAnnotations:
+  cpe.decathlon.com/kustomize-assembly: podinfo/frontend-fluxcd
+
+resources:
+  - ../../../../../kustomize/component-sets/podinfo-frontend
+
+generatorOptions:
+  annotations:
+    cpe.decathlon.com/what: holds kustomize vars values
+
+configMapGenerator:
+  - name: podinfo-frontend-config
+    literals:
+      - backend-url=http://backend.podinfo-backend-kz-fluxcd:9898/echo
+      - cache-server=cache.podinfo-backend-kz-fluxcd:6379
+      - ui-color=#7734eb
+      - ingress-prefix=podinfo-fe.kz.fluxcd
+  - name: global-config
+    literals:
+      - ingress-base-url=172.18.0.2.nip.io
+
+replacements:
+  - source:
+      kind: ConfigMap
+      name: global-config
+      fieldPath: data.ingress-base-url
+    targets:
+      - select:
+          name: podinfo-frontend
+          kind: Ingress
+        fieldpaths:
+          - spec.rules.0.host
+        options:
+          delimiter: "."
+          index: 1
+  - source:
+      kind: ConfigMap
+      name: podinfo-frontend-config
+      fieldPath: data.ingress-prefix
+    targets:
+      - select:
+          name: podinfo-frontend
+          kind: Ingress
+        fieldpaths:
+          - spec.rules.0.host
+        options:
+          delimiter: "."
+          index: 0
+  - source:
+      kind: ConfigMap
+      name: podinfo-frontend-config
+      fieldpath: data.ui-color
+    targets:
+      - select:
+          name: frontend
+          kind: Deployment
+        fieldpaths:
+          - spec.template.spec.containers.0.env.0.value
+  - source:
+      kind: ConfigMap
+      name: podinfo-frontend-config
+      fieldpath: data.backend-url
+    targets:
+      - select:
+          name: frontend
+          kind: Deployment
+        fieldpaths:
+          - spec.template.spec.containers.0.command.4
+        options:
+          delimiter: "="
+          index: 1
+  - source:
+      kind: ConfigMap
+      name: podinfo-frontend-config
+      fieldpath: data.cache-server
+    targets:
+      - select:
+          name: frontend
+          kind: Deployment
+        fieldpaths:
+          - spec.template.spec.containers.0.command.5
+        options:
+          delimiter: "="
+          index: 1
+
+images:
+  - name: ghcr.io/stefanprodan/podinfo
+    newTag: 6.1.5
