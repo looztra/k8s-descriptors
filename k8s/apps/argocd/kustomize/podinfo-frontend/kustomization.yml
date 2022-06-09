@@ -17,7 +17,7 @@ configMapGenerator:
     literals:
       - backend-url=http://backend.podinfo-backend-kz-argocd:9898/echo
       - cache-server=cache.podinfo-backend-kz-argocd:6379
-      - ui-color=#34ebab
+      - ui-color=#eb34d9
       - ingress-prefix=podinfo-fe.kz.argocd
   - name: global-config
     literals:
